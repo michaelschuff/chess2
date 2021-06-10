@@ -45,8 +45,8 @@ class ChessGame extends State<ChessBoard> {
         Positioned(
           top: 0,
           left: 0,
-          width: 400,
-          height: 400,
+          width: widget.size as double,
+          height: widget.size as double,
           child: Image.asset("assets/images/board.png", fit: BoxFit.fitWidth, isAntiAlias: false, filterQuality: FilterQuality.none),
         ),
 

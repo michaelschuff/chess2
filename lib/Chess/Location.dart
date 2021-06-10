@@ -8,6 +8,9 @@ class Location {
   Location operator *(int other) => Location(this.x * other, this.y * other);
   // Location operator /(int other) => Location(this.x ~/ other, this.y ~/ other);
   Location operator -() => Location(-this.x, -this.y);
+
+
+  Location abs() => Location(this.x.abs(), this.y.abs());
 }
 
 class Dir extends Location {

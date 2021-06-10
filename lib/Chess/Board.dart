@@ -7,5 +7,5 @@ class Board {
   Rules rules;
   Board(this.position, this.rules);
 
-  bool isLegalMove(Move move) => rules.doesNotViolate(position, move);
+  bool isLegalMove(Move move) => rules.isLegalMove(position, move);
 }
