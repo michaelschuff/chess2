@@ -44,8 +44,8 @@ class IsLegalPawnMove implements PieceMovementRule {
   bool check(Position position, Move move) {
     if (move.diff.y == 0) return false;
     if (move.piece.color == "w") {
-      if (move.diff.y == 2 && move.start.y == 1 && move.diff.x == 0)
-        return position.position[2][move.start.x].color != "w" && position[move.end].color != "w";
+      if (move.diff.y == 2 && move.start.y == 7-1 && move.diff.x == 0)
+        return position.position[7 - 2][move.start.x].color != "w" && position[move.end].color != "w";
       if (move.diff.y == 1) {
         if (move.diff.x == 0) return position[move.end].color != "w";
         if ((move.diff.x == 1 || move.diff.x == -1) &&
@@ -53,8 +53,8 @@ class IsLegalPawnMove implements PieceMovementRule {
           return position[move.end].color == "b";
       }
     } else if (move.piece.color == "b") {
-      if (move.diff.y == -2 && move.start.y == 6 && move.diff.x == 0)
-          return position.position[5][move.start.x].color != "b" && position[move.end].color != "b";
+      if (move.diff.y == -2 && move.start.y == 7-6 && move.diff.x == 0)
+          return position.position[7 - 5][move.start.x].color != "b" && position[move.end].color != "b";
       if (move.diff.y == -1) {
         if (move.diff.x == 0) return position[move.end].color != "b";
         if ((move.diff.x == 1 || move.diff.x == -1) && position.isOnBoard(move.end))

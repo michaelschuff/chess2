@@ -1,0 +1,13 @@
+w,p,assets/images/wp.svg
+w,r,assets/images/wr.svg
+w,n,assets/images/wn.svg
+w,b,assets/images/wb.svg
+w,q,assets/images/wq.svg
+w,k,assets/images/wk.svg
+b,p,assets/images/bp.svg
+b,r,assets/images/br.svg
+b,n,assets/images/bn.svg
+b,b,assets/images/bb.svg
+b,q,assets/images/bq.svg
+b,k,assets/images/bk.svg
+ , ,assets/images/  .svg
