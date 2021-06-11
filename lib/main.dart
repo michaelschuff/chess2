@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChessBoard(position: Position.defaultPosition, size: 400, top: 50, left: 50),
+      home: ChessBoard(position: Position.defaultPosition, size: 400, top: 0, left: 0),
     );
   }
 }
@@ -69,28 +69,22 @@ class ChessGame extends State<ChessBoard> {
         switch (temp.name) {
           case "b": {
             legal = IsLegalBishopMove().check(widget.position, move);
-          }
-          break;
+          } break;
           case "r": {
             legal = IsLegalRookMove().check(widget.position, move);
-          }
-          break;
+          } break;
           case "n": {
             legal = IsLegalKnightMove().check(widget.position, move);
-          }
-          break;
+          } break;
           case "k": {
             legal = IsLegalKingMove().check(widget.position, move);
-          }
-          break;
+          } break;
           case "p": {
             legal = IsLegalPawnMove().check(widget.position, move);
-          }
-          break;
+          } break;
           case "q": {
             legal = IsLegalQueenMove().check(widget.position, move);
-          }
-          break;
+          } break;
         }
         if (legal) {
           widget.position.position[pickedUpY][pickedUpX] = widget.position.position[endY][endX];
@@ -162,42 +156,3 @@ class ChessGame extends State<ChessBoard> {
     );
   }
 }
-
-class FENString {
-  String position       = "";
-  String turn           = "";
-  String castling       = "";
-  String lastMove       = "";
-  String numHalfmoves   = "";
-  String numMoves       = "";
-
-
-  // ignore: non_constant_identifier_names
-  FENString({String str = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"}) {
-    this.string = str;
-  }
-
-  // ignore: non_constant_identifier_names
-  String get boardString {
-    return position.replaceAllMapped(RegExp("[a-z]"), (m) => "b${m[0]}")
-        .replaceAllMapped(RegExp("[A-Z]"), (m) => "w${m[0]}")
-        .replaceAllMapped(RegExp("[0-8]"), (m) => "  " * int.parse(m[0]!))
-        .replaceAll("/","");
-  }
-
-  String get string => "$position $turn $castling $lastMove $numHalfmoves $numMoves";
-
-  // ignore: non_constant_identifier_names
-  set string(String FEN) {
-    var arr = FEN.split(" ");
-    if (arr.length != 6) return;
-
-    position = arr[0];
-    turn = arr[1];
-    castling = arr[2];
-    lastMove = arr[3];
-    numHalfmoves = arr[4];
-    numMoves = arr[5];
-  }
-}
-
