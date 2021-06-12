@@ -2,16 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Piece {
-  final String? mColor;
-  final String? mName;
-  final String? mImagePath;
+  final String mColor;
+  final String mType;
+  final String mImagePath;
 
-  const Piece(this.mColor, this.mName, this.mImagePath);
+  const Piece(this.mColor, this.mType, this.mImagePath);
 
-  String? get color => mColor;
-  String? get name => mName;
-  String? get imagePath => mImagePath;
-  SvgPicture get image => SvgPicture.asset(mImagePath!, fit: BoxFit.fitWidth);
+  String get color => mColor;
+  String get type => mType;
+  String get name => mColor + mType;
+  String get imagePath => mImagePath;
+  SvgPicture get image => SvgPicture.asset(mImagePath, fit: BoxFit.fitWidth);
 
 
   static const Piece wp = const Piece("w", "p", "assets/images/wp.svg");
