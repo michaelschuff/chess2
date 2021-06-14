@@ -63,36 +63,36 @@ class ChessGame extends State<ChessBoard> {
     int endX = 8*mouse.dx~/widget.size;
     int endY = 8*mouse.dy~/widget.size;
     Move move = Move(temp, Location(pickedUpX, pickedUpY), Location(endX, endY));
-    if (endX < 8 && endX >= 0) {
+    if (endX < 8 && endX >= 0 && (endX != pickedUpX || endY != pickedUpY)) {
       if (endY < 8 && endY >= 0) {
         bool legal = false;
-        switch (temp.name) {
+        switch (temp.type) {
           case "b": {
-            legal = IsLegalBishopMove().check(widget.position, move);
-          } break;
+            legal = IsLegalBishopMove().check(widget.position, move); break;
+          }
           case "r": {
-            legal = IsLegalRookMove().check(widget.position, move);
-          } break;
+            legal = IsLegalRookMove().check(widget.position, move); break;
+          }
           case "n": {
-            legal = IsLegalKnightMove().check(widget.position, move);
-          } break;
+            legal = IsLegalKnightMove().check(widget.position, move); break;
+          }
           case "k": {
-            legal = IsLegalKingMove().check(widget.position, move);
-          } break;
+            legal = IsLegalKingMove().check(widget.position, move); break;
+          }
           case "p": {
-            legal = IsLegalPawnMove().check(widget.position, move);
-          } break;
+            legal = IsLegalPawnMove().check(widget.position, move); break;
+          }
           case "q": {
-            legal = IsLegalQueenMove().check(widget.position, move);
-          } break;
+            legal = IsLegalQueenMove().check(widget.position, move); break;
+          }
         }
-        if (legal) {
-          widget.position.position[pickedUpY][pickedUpX] = widget.position.position[endY][endX];
-          widget.position.position[endY][endX] = temp;
-        }
+
+        if (legal) widget.position = BasicRules.MovePiece(widget.position, move);
       }
     }
 
+    endX = -1;
+    endY = -1;
     pickedUpX = -1;
     pickedUpY = -1;
     setState(() {});
@@ -128,7 +128,7 @@ class ChessGame extends State<ChessBoard> {
                         left: x * squareSize,
                         width: squareSize,
                         height: squareSize,
-                        child: SvgPicture.asset(widget.position.position[y][x].imagePath!, fit: BoxFit.fitWidth)
+                        child: SvgPicture.asset(widget.position.position[y][x].imagePath, fit: BoxFit.fitWidth)
                     ),
               if (pickedUpX != -1 && pickedUpY != -1)
                 AnimatedContainer(
@@ -144,7 +144,7 @@ class ChessGame extends State<ChessBoard> {
                           child: Container(
                             width: squareSize,
                             height: squareSize,
-                            child: SvgPicture.asset(widget.position.position[pickedUpY][pickedUpX].imagePath!, fit: BoxFit.fitWidth)
+                            child: SvgPicture.asset(widget.position.position[pickedUpY][pickedUpX].imagePath, fit: BoxFit.fitWidth)
                           )
                       ),
                     ],
